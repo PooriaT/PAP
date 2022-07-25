@@ -7,13 +7,24 @@ from .models import Userprofile
 from .models import Conference
 from .models import Event
 
-
+#Index Page
 def index(request):  
+    allEvents = Event.objects.all()
+    allConf = Conference.objects.all()
+   
+            
     template = loader.get_template('eventHandler/index.html')
-    # context = {
-    #     'latest_question_list': latest_question_list,
-    # }
-    context = {}
+    context = {
+        'conferences' : allConf,
+        'events': allEvents,
+    }
     return HttpResponse(template.render(context, request))
 
 
+#Login Page
+def login(request):
+    pass
+
+#Register Page
+def register(request):
+    pass
