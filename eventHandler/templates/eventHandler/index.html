@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Eventino</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/static/eventHandler/css/w3.css">
+        
+        <!-- style>
+            body {font-family: "Times New Roman", Georgia, Serif;}
+            h1, h2, h3, h4, h5, h6 {
+            font-family: "Playfair Display";
+            letter-spacing: 5px;
+            }
+        </style -->
+    </head>
+    <body>
+
+        <!-- Header -->
+        <header class="w3-container w3-bar w3-red">
+            <h1 class="w3-bar-item">Welcome to EVENTino!</h1>
+            <a href="#" class="w3-bar-item w3-block w3-mobile w3-padding-32 w3-right">Login!</a>
+        </header>
+        <div class="w3-bar w3-black w3-border">
+            <a href="#" class="w3-bar-item w3-button w3-mobile w3-green">Home</a>
+
+            <button class="w3-bar-item w3-button w3-green w3-mobile w3-right">Go</button>
+            <input type="text" class="w3-bar-item w3-input w3-white w3-mobile w3-right" placeholder="Search...">
+        </div>
+        {% comment %} <div class="w3-bar w3-black">
+            <div class="w3-container w3-left">
+                <a href="/recipeManager/" class="w3-bar-item w3-button w3-margin-top w3-green   ">Home</a>
+                <a href="#" class="w3-bar-item w3-button w3-margin-top">Link 1</a>
+                <a href="#" class="w3-bar-item w3-button w3-margin-top">Link 2</a>
+                <a href="#" class="w3-bar-item w3-button w3-margin-top">Link 3</a>
+            </div>
+            <!-- Search Box -->
+            <div class="w3-container w3-right">
+                <form class="w3-panel" method="post">
+                    {% csrf_token %}
+                    <label for="searchItem">Search in:</label>
+                    <select id="search" name="search">
+                        <option value="recipeName">Conference</option>
+                        <option value="category">Organizer</option>
+                        <option value="chefName">Speaker</option>
+                    </select>
+                    <input type="text" id="searchFor" name="searchFor" placeholder="Type Here!">
+                    <input class="w3-button" type="submit" name="searchSubmit" value="Submit">
+                </form>                  
+            </div>
+        </div>  {% endcomment %}
+
+        
+        <div class="w3-content" style="max-width:1100px">
+            
+
+            <!-- Sorting Box -->
+            {% comment %} <div class="w3-container w3-margin-top w3-lime w3-half">
+                <form class="w3-panel w3-row" method="post">
+                    {% csrf_token %}
+                    <label class="w3-large w3-col s2" for="sortItem">Sort By:</label>
+                    <select class="w3-input w3-col s6" id="sort" name="sort">
+                        <option value="default">----</option>
+                        <option value="recipeName">Conference Name</option>
+                        <option value="category">City</option>
+                        <option value="duration">Location</option>
+                        <option value="calories">Duration</option>
+                        <option value="servings">Servings</option>
+                    </select>
+                    <input class="w3-btn w3-right w3-black w3-col s3" type="submit" name="sortSubmit" value="Submit">
+                </form>                  
+            </div> {% endcomment %}
+
+
+            <!-- Page content -->
+            <div class="w3-container">
+                {% if conferences %}
+                    <ul>
+                        {% for conference in conferences %}
+                            <div class="w3-panel w3-border w3-light-grey w3-round-large">
+                                <p><b>Conference Name:</b> {{ conference.conferenceName }}</p>
+                                <p><b>Conference Organizer:</b> {{ conference.conferenceOrganizer }}</p>
+                                <p><b>City :</b> {{ conference.city }}</p>
+                                <p><b>Duration:</b> {{ conference.dateRange }}</p>
+                                {% if events %}
+                                    <ul>
+                                        {% for event in events %}
+                                            {% if event.conference.conferenceName == conference.conferenceName %}
+                                                <div class="w3-panel w3-border w3-blue-grey w3-round-xlarge">
+                                                    <p><b>Event Name:</b> {{ event.eventName }}</p>
+                                                    <p><b>Event Location:</b> {{ event.eventLocation }}</p>
+                                                    <p><b>Event Room:</b> {{ event.eventRoom }}</p>
+                                                    <p><b>Event Date:</b> {{ event.eventDate }}</p>
+                                                    <p><b>Event Speaker:</b> {{ event.eventSpeaker }}</p>
+                                                </div>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </ul>
+                                {% else %}
+                                    <p class="w3-panel w3-red">No Event!!!!.</p>
+                                {% endif %}
+                                {% comment %} <p><b>Recipe ID: #</b> {{ item.recipeID }}</p>
+                                <p><b>Food Name:</b> {{ item.recipeName }}</p>
+                                <p><b>Category:</b> {{ item.category }}</p>
+                                <p><b>Ingredients:</b></p>
+                                <p>
+                                    {{item.ingredient|linenumbers|linebreaksbr }}
+                                </p>
+                                <p><b>Time Duration:</b> {{ item.duration }}</p>
+                                <p><b>Steps:</b></p>
+                                <p>{{ item.steps|linebreaksbr }}</p>
+                                <p><b>Calorie:</b> {{ item.calories }} C</p>
+                                <p><b>Servings:</b> {{ item.servings|floatformat:"0" }}</p>
+                                <p><b>Introduced by:</b> {{ item.chefName }}</p> {% endcomment %}
+                                 <!-- Trigger/Open the Modal -->
+                              
+                            </div>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p class="w3-panel w3-red">No Entry!!!!.</p>
+                {% endif %}
+            </div>
+        <!-- End page content -->
+        </div>
+
+        <!-- Footer -->
+        <footer class="w3-center w3-light-grey w3-padding-32">
+            <p>Powered by Pooria and Armin</p>
+        </footer>
+
+    </body>
+</html>
