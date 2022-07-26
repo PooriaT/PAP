@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.template import loader
-
 from django.http import HttpResponse
+
+
 
 from django.contrib.auth import authenticate, login, logout
 
@@ -13,13 +14,18 @@ from .models import Event
 def index(request):  
     allConf = Conference.objects.all()
     
-    print(request.user)
+    user_fname = ', Guest'
+    login_stat = True
     if request.user.is_authenticated:
         allEvents = Event.objects.all()
+        user_fname = ', ' + request.user.get_short_name()
+        login_stat = False
     else:
         allEvents = {}
     template = loader.get_template('eventHandler/index.html')
     context = {
+        'loginStat' : login_stat,
+        'name' : user_fname,
         'conferences' : allConf,
         'events': allEvents,
     }
@@ -28,7 +34,7 @@ def index(request):
 
 #Login Page
 def loginFunc(request):
-    print(request.POST)
+    message = ""
     if request.POST:
         print(request.POST)
         username = request.POST['username']
@@ -39,13 +45,19 @@ def loginFunc(request):
             login(request, user)
             return redirect('index')
         else:
-            pass
+            message = "Invalid Username or Password!!!"
+    
     template = loader.get_template('eventHandler/login.html')
     context = {
-        'events': {},
+        'message': message,
     }
     return HttpResponse(template.render(context, request))
 
+
+def logoutFunc(request):
+    logout(request)
+    # Redirect to a success page.
+    return redirect('index')
 
 #Register Page
 def register(request):

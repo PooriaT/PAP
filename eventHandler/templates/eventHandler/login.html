@@ -35,7 +35,11 @@
                         <input class="w3-input" type="password" style="width:90%" name="password" required>
                         <label>Password</label>
                     </p>
-                    
+                    {% if message %}
+                        <div class="w3-panel w3-red">
+                            <p><b>{{ message }}</b></p>
+                        </div>  
+                    {% endif %}
                     <p>
                         <button type="submit" value="login" class="w3-button w3-section w3-teal w3-ripple"> Log in </button>
                     </p>
