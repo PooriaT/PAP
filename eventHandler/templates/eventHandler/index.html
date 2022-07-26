@@ -19,10 +19,10 @@
         <!-- Header -->
         <header class="w3-container w3-bar w3-red">
             <h1 class="w3-bar-item">Welcome to EVENTino!</h1>
-            <a href="#" class="w3-bar-item w3-block w3-mobile w3-padding-32 w3-right">Login!</a>
+            <a href="login/" class="w3-bar-item w3-block w3-mobile w3-padding-32 w3-right">Login!</a>
         </header>
         <div class="w3-bar w3-black w3-border">
-            <a href="#" class="w3-bar-item w3-button w3-mobile w3-green">Home</a>
+            <a href="" class="w3-bar-item w3-button w3-mobile w3-green">Home</a>
 
             <button class="w3-bar-item w3-button w3-green w3-mobile w3-right">Go</button>
             <input type="text" class="w3-bar-item w3-input w3-white w3-mobile w3-right" placeholder="Search...">
@@ -97,28 +97,14 @@
                                         {% endfor %}
                                     </ul>
                                 {% else %}
-                                    <p class="w3-panel w3-red">No Event!!!!.</p>
+                                    <p class="w3-panel w3-red w3-round">Access Restricted!!!!</p>
                                 {% endif %}
-                                {% comment %} <p><b>Recipe ID: #</b> {{ item.recipeID }}</p>
-                                <p><b>Food Name:</b> {{ item.recipeName }}</p>
-                                <p><b>Category:</b> {{ item.category }}</p>
-                                <p><b>Ingredients:</b></p>
-                                <p>
-                                    {{item.ingredient|linenumbers|linebreaksbr }}
-                                </p>
-                                <p><b>Time Duration:</b> {{ item.duration }}</p>
-                                <p><b>Steps:</b></p>
-                                <p>{{ item.steps|linebreaksbr }}</p>
-                                <p><b>Calorie:</b> {{ item.calories }} C</p>
-                                <p><b>Servings:</b> {{ item.servings|floatformat:"0" }}</p>
-                                <p><b>Introduced by:</b> {{ item.chefName }}</p> {% endcomment %}
-                                 <!-- Trigger/Open the Modal -->
                               
                             </div>
                         {% endfor %}
                     </ul>
                 {% else %}
-                    <p class="w3-panel w3-red">No Entry!!!!.</p>
+                    <p class="w3-panel w3-red">No Entry!!!!</p>
                 {% endif %}
             </div>
         <!-- End page content -->

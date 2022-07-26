@@ -3,14 +3,6 @@ import datetime
 
 
 # Create your models here.
-class Userprofile(models.Model):
-    userID = models.AutoField(primary_key=True)
-    username = models.CharField(max_length=30, unique=True)
-    fname = models.CharField(max_length=20) #Firstname
-    lname = models.CharField(max_length=30) #Lastname
-    email = models.EmailField(unique=True)
-    #privilege = models.IntegerField() # 0 -> admin, 1 -> conference organizer, 2 -> speaker, 3-> attendee
-    password = models.CharField(max_length=20)
 
 class Conference(models.Model):
     conferenceID = models.AutoField(primary_key=True)
